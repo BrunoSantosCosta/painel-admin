@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:panel_admin/screen/main/main_screen.dart';
 
 void main() {
   runApp(
@@ -21,6 +22,11 @@ class MyApp extends StatelessWidget {
                 bodyColor: Colors.white,
               ),
         ),
+      ),
+      home: MainScreen(
+        press: () {},
+        svgSrc: '',
+        title: '',
       ),
     );
   }

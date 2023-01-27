@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:panel_admin/constants.dart';
+
+import 'components/header.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -10,14 +9,29 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Container(
-              height: 400,
-              width: double.infinity,
-              color: Colors.green,
-            ),
+            const Header(),
+            Row(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Container(
+                    color: Colors.white,
+                    height: 500,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    color: Colors.purple,
+                    height: 500,
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

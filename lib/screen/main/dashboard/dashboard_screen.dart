@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:panel_admin/constants.dart';
 import 'package:panel_admin/screen/main/dashboard/components/chart.dart';
+import 'package:panel_admin/screen/main/dashboard/components/my_files.dart';
 import 'package:panel_admin/screen/main/dashboard/components/storage_details.dart';
 import 'package:panel_admin/screen/main/dashboard/components/storage_info_card.dart';
 
@@ -25,10 +26,7 @@ class DashboardScreen extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 5,
-                  child: Container(
-                    color: Colors.white,
-                    height: 500,
-                  ),
+                  child: MyFiles(),
                 ),
                 const SizedBox(width: 16),
                 const Expanded(

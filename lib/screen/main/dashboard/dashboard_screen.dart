@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:panel_admin/constants.dart';
+import 'package:panel_admin/models/RecentFiles.dart';
 import 'package:panel_admin/screen/main/dashboard/components/chart.dart';
 import 'package:panel_admin/screen/main/dashboard/components/my_files.dart';
 import 'package:panel_admin/screen/main/dashboard/components/storage_details.dart';
@@ -26,7 +27,51 @@ class DashboardScreen extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 5,
-                  child: MyFiles(),
+                  child: Column(
+                    children: [
+                      const MyFiles(),
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: const BoxDecoration(
+                          color: secondaryColor,
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Recent Files',
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: DataTable(
+                                horizontalMargin: 0,
+                                columnSpacing: 16,
+                                columns: const [
+                                  DataColumn(
+                                    label: Text('File Name'),
+                                  ),
+                                  DataColumn(
+                                    label: Text('Date'),
+                                  ),
+                                  DataColumn(
+                                    label: Text('Size'),
+                                  ),
+                                ],
+                                rows: List.generate(
+                                  demoRecentFiles.length,
+                                  (index) =>
+                                      recentFileDataRow(demoRecentFiles[index]),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 16),
                 const Expanded(
@@ -38,6 +83,36 @@ class DashboardScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  DataRow recentFileDataRow(RecentFile fileInfo) {
+    return DataRow(
+      cells: [
+        DataCell(
+          Row(
+            children: [
+              SvgPicture.asset(
+                fileInfo.icon,
+                height: 30,
+                width: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                ),
+                child: Text(fileInfo.title),
+              )
+            ],
+          ),
+        ),
+        DataCell(
+          Text(fileInfo.date),
+        ),
+        DataCell(
+          Text(fileInfo.size),
+        )
+      ],
     );
   }
 }

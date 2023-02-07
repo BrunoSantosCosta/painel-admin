@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:panel_admin/constants.dart';
 import 'package:panel_admin/models/RecentFiles.dart';
+import 'package:panel_admin/responsive.dart';
 import 'package:panel_admin/screen/main/dashboard/components/chart.dart';
 import 'package:panel_admin/screen/main/dashboard/components/my_files.dart';
 import 'package:panel_admin/screen/main/dashboard/components/storage_details.dart';
@@ -69,15 +70,19 @@ class DashboardScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                      )
+                      ),
+                      if (Responsive.isMobile(context))
+                        const SizedBox(height: 16),
+                      if (Responsive.isMobile(context)) StorageDetails(),
                     ],
                   ),
                 ),
-                const SizedBox(width: 16),
-                const Expanded(
-                  flex: 2,
-                  child: StorageDetails(),
-                ),
+                if (!Responsive.isMobile(context)) const SizedBox(width: 16),
+                if (!Responsive.isMobile(context))
+                  const Expanded(
+                    flex: 2,
+                    child: StorageDetails(),
+                  ),
               ],
             )
           ],
